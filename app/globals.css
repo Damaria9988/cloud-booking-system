@@ -1,0 +1,318 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.5cm;
+  }
+
+  html, body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+  }
+
+  /* Hide browser print headers and footers - these are controlled in browser print settings */
+  /* Users need to disable "Headers and footers" in their browser's print dialog */
+  
+  /* Ensure ticket content starts at the top */
+  .ticket-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Hide elements during print */
+  .print-hidden {
+    display: none !important;
+  }
+
+  /* Show elements during print */
+  .print-only {
+    display: block !important;
+  }
+
+  /* Background colors */
+  .print-bg-white {
+    background-color: white !important;
+  }
+
+  /* Padding adjustments */
+  .print-py-4 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .print-px-2 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Prevent page breaks inside elements */
+  .print-break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Force page breaks */
+  .print-break-after {
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  /* Remove shadows and effects for cleaner print */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure links show URLs */
+  a[href]:after {
+    content: none !important;
+  }
+
+  /* Better contrast for print */
+  .text-muted-foreground {
+    color: #666 !important;
+  }
+}
+
+:root {
+  /* Modern color palette inspired by logistics/travel platforms */
+  --background: oklch(0.98 0.005 264);
+  --foreground: oklch(0.15 0.01 264);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.01 264);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.01 264);
+
+  /* Deep blue primary - trust and reliability */
+  --primary: oklch(0.35 0.15 264);
+  --primary-foreground: oklch(0.99 0 0);
+
+  /* Vibrant coral accent - energy and affordability */
+  --accent: oklch(0.65 0.19 25);
+  --accent-foreground: oklch(0.99 0 0);
+
+  /* Subtle secondary */
+  --secondary: oklch(0.95 0.01 264);
+  --secondary-foreground: oklch(0.35 0.15 264);
+
+  --muted: oklch(0.96 0.005 264);
+  --muted-foreground: oklch(0.5 0.01 264);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.9 0.005 264);
+  --input: oklch(0.9 0.005 264);
+  --ring: oklch(0.35 0.15 264);
+
+  --chart-1: oklch(0.35 0.15 264);
+  --chart-2: oklch(0.65 0.19 25);
+  --chart-3: oklch(0.55 0.18 184);
+  --chart-4: oklch(0.7 0.15 140);
+  --chart-5: oklch(0.6 0.2 310);
+
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  /* Dark mode with deep navy background */
+  --background: oklch(0.12 0.03 264);
+  --foreground: oklch(0.97 0.005 264);
+  --card: oklch(0.16 0.03 264);
+  --card-foreground: oklch(0.97 0.005 264);
+  --popover: oklch(0.16 0.03 264);
+  --popover-foreground: oklch(0.97 0.005 264);
+
+  --primary: oklch(0.65 0.19 25);
+  --primary-foreground: oklch(0.12 0.03 264);
+
+  --accent: oklch(0.65 0.19 25);
+  --accent-foreground: oklch(0.12 0.03 264);
+
+  --secondary: oklch(0.2 0.03 264);
+  --secondary-foreground: oklch(0.97 0.005 264);
+
+  --muted: oklch(0.2 0.03 264);
+  --muted-foreground: oklch(0.6 0.01 264);
+
+  --destructive: oklch(0.6 0.245 27.325);
+  --destructive-foreground: oklch(0.97 0.005 264);
+
+  --border: oklch(0.25 0.03 264);
+  --input: oklch(0.25 0.03 264);
+  --ring: oklch(0.65 0.19 25);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom animations for modern feel */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+    filter: blur(20px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(30px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+  background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+  background-size: 1000px 100%;
+}
+
+/* Custom scrollbar styling */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Always visible scrollbar for tables and content areas */
+.scrollbar-thin {
+  scrollbar-width: auto !important;
+  scrollbar-color: #94a3b8 #f1f5f9 !important;
+  overflow-y: scroll !important; /* Force scrollbar to always show */
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+  display: block !important;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+  border-radius: 6px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #94a3b8 !important;
+  border-radius: 6px !important;
+  border: 2px solid #f1f5f9 !important;
+  min-height: 40px !important;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #64748b !important;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:active {
+  background: #475569 !important;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
