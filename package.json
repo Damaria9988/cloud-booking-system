@@ -2,12 +2,14 @@
   "name": "damaria-travel",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-
     "setup-db": "node scripts/setup-database.js",
     "clear-db": "node scripts/clear-database.js",
     "init-db": "node scripts/init-db.js",
